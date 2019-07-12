@@ -97,19 +97,24 @@
       context.drawImage(video, 0, 0, width, height);
     
       var data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
-	var data_to_send={'data':data};
-	$.ajax({
+
+      //photo.setAttribute('src', data);
+    
+      var data_to_send={'data':data};
+	
+$.ajax({
         url: 'http://127.0.0.1:5000/test',
         type: 'post',
         contentType: 'application/json',
 	dataType:'json',
         data: JSON.stringify(data_to_send),
         success: function(response){
-            console.log(response);
+		console.log(response);
+		photo.setAttribute('src', response['data']);
+	          
         }
     });
-
+		
 
 
 
